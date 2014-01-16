@@ -1,0 +1,64 @@
+import edu.holycross.shot.sparqlcc.CiteCollectionSvc
+
+String sparql = "http://localhost:3030/ds/"
+
+CiteCollectionSvc cc = new CiteCollectionSvc(sparql)
+
+
+
+html.html {
+    head {
+        title("SPARQL CITE Collection service")
+    }
+    
+    body {
+    
+    	header {
+            h1("SPARQL CITE Collection service")
+    	}
+    	
+    	article {
+/*
+            String countMessage
+            if (parsedReply.results.bindings.size() > 1) {
+                countMessage = "hosting ${parsedReply.results.bindings.size()} image collections."
+            }  else if (parsedReply.results.bindings.size() == 1) {
+                countMessage = "hosting 1 image collection."
+            } else {
+                countMessage = "but sadly it currently does not host any collections."
+            }
+            p("This site hosts an implementation of the CHS Image Service, ${countMessage}")
+
+
+            ul {
+                parsedReply.results.bindings.each { b ->
+                    li ("${b.desc.value}:  ${b.num.value} images")
+                }
+            }
+*/
+            
+	    p {
+                mkp.yield "See "
+                a(href : "lookupforms", "forms for submitting requests to the service")
+                mkp.yield "."
+            }
+
+
+
+            
+	    p {
+                mkp.yield "See "
+                a(href : "queryforms", "forms for querying collections")
+                mkp.yield "."
+            }
+
+	    h2("Links to add")
+	    ul {
+                li ("More about this implementation.")
+                li ("More about the CHS Image service.")
+                li ("README.")
+                li ("License information.")
+            }
+        }
+    }
+}

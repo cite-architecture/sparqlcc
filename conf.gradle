@@ -1,0 +1,6 @@
+
+/* reserved for site-specific configuration options */
+ext {
+  SPARQL = "http://localhost:3030/ds/"
+  
+}

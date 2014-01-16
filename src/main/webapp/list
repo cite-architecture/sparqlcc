@@ -1,0 +1,130 @@
+import edu.holycross.shot.prestochango.CollectionArchive
+
+import edu.holycross.shot.sparqlcc.Query
+
+import edu.harvard.chs.cite.CiteUrn
+import groovy.xml.MarkupBuilder
+
+response.setContentType("text/xml; charset=UTF-8")
+request.setCharacterEncoding("UTF-8")
+response.setHeader( "Access-Control-Allow-Origin", "*")
+
+// TEMP HACK:
+String sparqlAddr =  "http://localhost:3030/ds/"
+
+
+def getCapsFile = {
+    File capsFile
+    String capsFileName = "capabilities.xml"
+    if (params['config']) {
+        capsFileName = params['config']
+    }
+    try {
+        capsFile = new File(context.getRealPath("/configs") + "/" + capsFileName )
+        capsFile
+    } catch (Exception e) {
+        null
+    }
+}
+
+boolean urnSyntaxOk(String urnStr) {
+    try {
+        CiteUrn urn = new CiteUrn (urnStr)
+        return true
+    } catch (Exception e) {
+        return false
+    }
+}
+
+
+boolean checkRequest() {
+    return  true
+}
+
+ArrayList formTriple(String propertyName, String rawVal) {
+    def valParts = rawVal.split("#")
+    def triple = []
+    if (valParts?.size() == 2) {
+        triple = [propertyName, valParts[0], valParts[1]]
+    } else  {
+        triple = [propertyName, valParts[0]]
+    }
+    return triple
+}
+
+
+File caps = getCapsFile()
+if (! caps) { 
+    errorMsg("Could not find capabilities file ${params['config']}")
+
+} else {
+    CiteUrn collUrn = new CiteUrn(params['coll'])
+    CollectionArchive archive = new CollectionArchive(caps)
+    Query q = new Query(archive, sparqlAddr)
+
+    // get metadata about collection
+    String canonicalId = archive.getCanonicalIdProperty(collUrn)
+    def propertyNames = archive.getPropNameList(collUrn)
+    def propertyTypes = archive.getPropTypeList(collUrn)
+    def propertyLabels = archive.getPropLabelList(collUrn)
+
+    def msg
+
+    boolean singlet = false
+    def propList = []
+    /* [Property, Value, Operator] */
+    def triples = []
+    /* If we have only a single property ... */
+    if (params['prop'] instanceof java.lang.String) {
+        singlet = true
+        def pName = params['prop']
+        def pVal = params[pName]
+        if (pVal?.size() > 0) {
+            int pIndex = -1
+            propertyNames.eachWithIndex { n,i ->
+                if (pName == n) {
+                    pIndex = i
+                }
+            } 
+            switch(propertyTypes[pIndex]) {
+                case "ctsurn":
+                    case "citeurn":
+                    triples.add([pName,params[pName]])
+                break
+                default:
+                    triples.add(formTriple(pName, params[pName]))
+                break
+            }
+            propList.add(pName)
+        }
+
+        
+        
+    } else {
+        // cycle instances
+        params['prop'].each { pName ->
+            def pVal = params[pName]
+            // elvis this
+            if (pVal.size() > 0) {
+                int pIndex = -1
+                propertyNames.eachWithIndex { n,i ->
+                    if (pName == n) {
+                        pIndex = i
+                    }
+                } 
+                switch(propertyTypes[pIndex]) {
+                    case "ctsurn":
+                        case "citeurn":
+                        triples.add([pName,params[pName]])
+                    break
+                    default:
+                        triples.add(formTriple(pName, params[pName]))
+                    break
+                }
+                propList.add(pName)
+            }
+        }
+    }
+    println q.listResults(collUrn, triples)
+}
+

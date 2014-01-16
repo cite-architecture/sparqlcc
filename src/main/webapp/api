@@ -1,0 +1,108 @@
+import edu.holycross.shot.sparqlcc.CiteCollectionSvc
+
+import edu.harvard.chs.cite.CiteUrn
+
+String contentType = "text/xml"
+response.setContentType(contentType)
+response.setHeader( "Access-Control-Allow-Origin", "*")
+
+
+String req = request.getParameter("request")
+String urnStr = request.getParameter("urn")
+
+// guarantee that URN parameter is syntactically valid
+boolean done = false
+CiteUrn urn
+try {
+    urn = new CiteUrn(urnStr)
+} catch (Exception e) {
+    println "<error>${urnStr} is not a valid URN: ${e}</error>\n"
+    done = true
+}
+
+if (!done) {
+    CiteCollectionSvc cc = new CiteCollectionSvc("@tripleserver@")
+    switch(req) {
+        case "GetCapabilities":
+            println "<error>${req} request not yet supported.</error>"
+        break
+
+        case "GetPaged":
+            String limit = "20"
+        String offset = "0"
+        
+        if (request.getParameter("offset")) {
+            offset = request.getParameter("offset")
+        }
+        if (request.getParameter("limit")) {
+            offset = request.getParameter("limit")
+        }
+        Integer off = offset as Integer
+        Integer lim = limit as Integer
+        println cc.getPaged(urn, off, lim)
+        break
+
+
+
+
+        case "GetPagedIllustration":
+            String limit = "20"
+        String offset = "0"
+        
+        if (request.getParameter("offset")) {
+            offset = request.getParameter("offset")
+        }
+        if (request.getParameter("limit")) {
+            offset = request.getParameter("limit")
+        }
+
+        Integer off = offset as Integer
+        Integer lim = limit as Integer
+        println cc.getPagedIllustration(urn, off, lim)
+        break
+
+        case "GetObjectPlus":
+            println cc.getObjectPlusReply(urn)
+        break
+
+        case "GetPrevNextUrn":
+            println cc.getPrevNextUrnReply(urn)
+        break
+
+        case "GetNext":
+            println cc.getNextReply(urn)
+        break
+
+        case "GetPrev":
+            println cc.getPrevReply(urn)
+        break
+
+        case "GetCollectionSize":
+            println cc.getCollectionSizeReply(urn)
+        break
+
+        case "GetValidReff":
+            println cc.getValidReffReply(urn)
+        break
+
+        case "GetObject":
+            println cc.getObjectReply(urn)
+        break
+
+        case "GetLast":
+            println cc.getLastReply(urn)
+        break
+
+        case "GetFirst":
+            println cc.getFirstReply(urn)
+        break
+
+        default :
+        // break with "undefined request" excetpion
+            println "<error>Unrecognized request: ${req}.  \n(Add properly name-spaced reply here.)</error>"
+        break
+    }
+}
+
+
+

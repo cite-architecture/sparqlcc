@@ -1,0 +1,137 @@
+import groovy.xml.MarkupBuilder
+StringWriter writer = new StringWriter()
+MarkupBuilder home = new MarkupBuilder(writer)
+
+import edu.holycross.shot.prestochango.CollectionArchive
+import edu.harvard.chs.cite.CiteUrn
+
+
+request.setCharacterEncoding("UTF-8")
+response.setHeader( "Access-Control-Allow-Origin", "*")
+
+String apiKey = "@apiKey@"
+
+def getCapsFile = {
+    File capsFile
+    String capsFileName = "capabilities.xml"
+    if (params['config']) {
+        capsFileName = params['config']
+    }
+    try {
+        capsFile = new File(context.getRealPath("/configs") + "/" + capsFileName )
+        capsFile
+    } catch (Exception e) {
+        null
+    }
+}
+
+File caps = getCapsFile()
+if (! caps) { 
+    errorMsg("Could not find capabilities file ${params['config']}")
+} else {
+  System.err.println "CAP FILE " + getCapsFile()
+    CollectionArchive archive = new CollectionArchive(getCapsFile())
+    
+    home.html {
+        head {
+            title("CITE Collections Query Extension")
+            link(type : "text/css", rel : "stylesheet", href : "ctskit/css/normalize.css", title : "CSS stylesheet")
+            link(type : "text/css", rel : "stylesheet", href : "ctskit/css/simple.css", title : "CSS stylesheet")
+            link(type : "text/css", rel : "stylesheet", href : "ctskit/css/citeCollection.css", title : "CSS stylesheet")
+            link(type : "text/css", rel : "stylesheet", href : "ctskit/css/tei.css", title : "CSS stylesheet")
+            p('class' : "menu") {
+                mkp.yield "CITE Collections service: "
+                a (href : "home", "home")
+            }
+        }
+        body {
+            div('id' : "header") { 
+        	p(" ")
+            }
+            div {
+                h1("CITE Collections Query Extension")
+                p("Currently in development: ")
+                ul {
+                    li("count")
+                    li("aggregate")
+                }
+
+
+
+                h2("List request")
+                p("Lists objects matching conditions.")
+
+                ul {
+                    def count = 0
+                    archive.citeConfig.keySet().each { k ->
+                        def conf = archive.citeConfig[k] 
+                        p "${conf['title']}"
+                        def collUrnStr = "urn:cite:${conf['nsabbr']}:${k}"
+                        try {
+                            CiteUrn collUrn = new CiteUrn(collUrnStr)
+                            form(action : "list", method : "GET")  {
+                                input(name : "coll", value : collUrnStr, type : "hidden")
+                                fieldset {
+                                    archive.getPropNameList(collUrn).each { p ->
+                                        input(name : "prop", value : p, type : "hidden")
+                                        label ('for' : count, "${p}")
+
+                                        def vals = archive.getValueList(collUrn, p)
+                                        if (vals.size() > 0) {
+                                            System.err.println "For ${p}, ${vals}, size ${vals.size()}"
+                                            select (name : p) {
+                                                option(selected : "selected", "")
+                                                vals.each {
+                                                    option("${it}")
+                                                }
+                                            }
+                                        } else {
+                                            input (name: p, value : "", id : count)
+                                        }
+                                        
+                                    }
+                                }
+                                                                
+                                input (type: "submit", value : "Search")
+                            }
+                        } catch (Exception e) {
+                            System.err.println "Failed on ${collUrnStr}: ${e}"
+                        }
+                        count++
+                    //}
+                    }
+                }
+/*
+            
+
+            h2("Show object")
+            p("As currently implemented, this is little more than an alternate syntax for the CITE Collection GetObject request.")
+            p("It is included here because it could be a useful function to modify for one-off applications.")
+
+
+            h2("Visual aggregate")
+
+            p("In a collection with an image property, you can use this method to get a list of values to map onto image RoIs.")
+
+            p("Supply a URN identifying a collection; returns the URN identifying the first object in the collection.")
+            form(action : "imgmap", method : "GET")  {
+                label(for: "coll", "Collection to plot")
+                input(name : "coll", value : "urn:cite:botcar:sloane")
+                label(for: "img", "Image to plot on")
+                input(name: "img", value : "urn:cite:fufolioimg:Caroliniana.Catesby_HS212_007_0504")
+                label(for: "map", "Property to illustrate")
+                input(name: "map", value: "scientificName")
+                label(for: "imgProp", "Property with image map data")
+                input(name: "imgProp", value: "folioImageROI")
+                input (type: "submit", value : "Submit")
+            }
+
+        }
+    }
+*/
+        }
+    }
+}
+
+println writer.toString()
+}

@@ -1,0 +1,19 @@
+/* Configuration for sparqlcts.
+*/
+
+
+project.ext {
+    /* Required: address of your triple store. */
+    tripleserver = "http://localhost:3030/ds/"
+
+    
+    /* Optional: change this to include collection inventory files
+    from a different directory */
+    inventoryDir = "invs"
+
+
+    /* Automatically generated version value.*/
+    // You can manually update this value if you wish use 
+    // a specific version of the sparqlcc library.
+    sparqlccVersion = "@sparqlccVersion@"
+}

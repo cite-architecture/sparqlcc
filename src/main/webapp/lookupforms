@@ -1,0 +1,148 @@
+String egCollection = "urn:cite:hmt:codices"
+String egObject = "urn:cite:hmt:codices.msA"
+
+String egOrdered = "urn:cite:hmt:msA"
+String egOrderedObj = "urn:cite:hmt:msA.20r"
+
+       
+html.html {
+    head {
+        title("SPARQL CITE Collections: query forms")
+    }
+    
+    body {
+    
+    	header {
+            h1("SPARQL CITE Collections: query forms")
+    	}
+    	
+    	article {
+
+	p {
+                mkp.yield("The CITE Collection service understands the following requests:")
+                ul {
+                    li("GetCapabilities (not yet implemented)")
+                    li("GetCollectionSize")
+                    li("GetValidReff")
+                    li("GetPaged")
+                    li("GetPagedIllustration")
+                    li("GetObject")
+                }
+            }
+        }
+
+
+        h2("Information about whole collections")
+
+        h3("GetCollectionSize")
+
+        p ("Supply a URN identifying the collection; returns the number of objects in the collection.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetCollectionSize")
+            input(name : "urn", value : "${egCollection}")
+            input (type: "submit", width: "200" , value : "Submit")
+        }
+
+
+        h3("GetValidReff")
+        
+        p ("SHOULD: Supply a URN identifying the collection or object; returns valid reff  for all objects in the collection or all versions of the object.")
+        p("CURRENTLY:  only accepts collection URN.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetValidReff")
+            input(name : "urn", value : "${egCollection}")
+            input (type: "submit", value : "Submit")
+        }
+
+
+
+
+        h3 ("GetPaged")
+        p("Supply a URN identifying an ordered collection; returns a list of URNs.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetPaged")
+            input(name : "urn", value : "${egOrdered}")
+            input(name : "offset", value : "0")
+            input(name : "limit", value : "20")
+            input (type: "submit", value : "Submit")
+        }
+
+
+
+        h3 ("GetPagedIllustration")
+        p("Supply a URN identifying an ordered collection with default images; returns a list of URNs.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetPagedIllustration")
+            input(name : "urn", value : "${egOrdered}")
+            input(name : "offset", value : "0")
+            input(name : "limit", value : "20")
+            input (type: "submit", value : "Submit")
+        }
+
+
+
+        h2("Object retreival")
+
+        h3 ("GetObject")
+        p("Supply a URN identifying the object; returns a CITE XML description of hte object.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetObject")
+            input(name : "urn", value : "${egObject}")
+            input (type: "submit", value : "Submit")
+        }
+
+
+        h3 ("GetObjectPlus")
+        p("Supply a URN identifying the object; returns a CITE XML description of hte object, together with navigational information if the collection is ordered.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetObjectPlus")
+            input(name : "urn", value : "${egOrderedObj}")
+            input (type: "submit", value : "Submit")
+        }
+
+
+        h2("Navigation of ordered collections")
+        p("These methods apply only to ordered collections.")
+
+        h3 ("GetFirst")
+        p("Supply a URN identifying a collection; returns the URN identifying the first object in the collection.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetFirst")
+            input(name : "urn", value : "${egOrdered}")
+            input (type: "submit", value : "Submit")
+        }
+
+        h3 ("GetLast")
+        p("Supply a URN identifying a collection; returns the URN identifying the last object in the collection.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetLast")
+            input(name : "urn", value : "${egOrdered}")
+            input (type: "submit", value : "Submit")
+        }
+
+
+        h3 ("GetNext")
+        p("Supply a URN identifying an object; returns the CITE XML description of the following object.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetNext")
+            input(name : "urn", value : "${egOrderedObj}")
+            input (type: "submit", value : "Submit")
+        }
+
+        h3 ("GetPrev")
+        p("Supply a URN identifying an object; returns the CITE XML description of the preceding object.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetPrev")
+            input(name : "urn", value : "${egOrderedObj}")
+            input (type: "submit", value : "Submit")
+        }
+
+        h3 ("GetPrevNextUrn")
+        p("Supply a URN identifying an object; returns URNs identifying the preceding and following objects.")
+        form(action : "api", method : "GET")  {
+            input (type : "hidden", name : "request", value : "GetPrevNextUrn")
+            input(name : "urn", value : "${egOrderedObj}")
+            input (type: "submit", value : "Submit")
+        }
+    }
+}
