@@ -273,14 +273,23 @@ System.err.println "GETOBJ: " + qg.getObjectQuery(urn)
         if (acceptType == "application/json") {
             q +="&output=json"
         }
-        def http = new HTTPBuilder(q)
-        http.request( Method.GET, ContentType.TEXT ) { req ->
-            headers.Accept = acceptType
-            response.success = { resp, reader ->
-                replyString = reader.text
-            }
-        }
+		/*
+        HTTPBuilder http = new HTTPBuilder(q)
+		try {
+				http.request( Method.GET, ContentType.TEXT ) { req ->
+					headers.Accept = acceptType
+					response.success = { resp, reader ->
+						replyString = reader.text
+					}
+				}
+		} finally {
+			http.shutdown()
+		}
         return replyString
+		*/
+		URL queryUrl = new URL(q)
+        return queryUrl.getText("UTF-8")
+
     }
 
 

@@ -23,8 +23,8 @@ prefix hmt:        <http://www.homermultitext.org/hmt/rdf/>
        return """${prefix}
 SELECT ?curr ?next
            WHERE {
-           ?curr olo:next ?next .
-           FILTER (str(?curr) = "${urn}") .
+           <${urn}> olo:next ?next .
+           BIND ( <${urn}> as ?curr ) 
            }
 """
     }
@@ -33,8 +33,8 @@ SELECT ?curr ?next
        return """${prefix}
 SELECT ?curr ?prev
            WHERE {
-           ?curr olo:previous ?prev .
-           FILTER (str(?curr) = "${urn}") .
+           <${urn}> olo:previous ?prev .
+           BIND ( <${urn}> as ?curr ) 
            }
 """
    }
@@ -42,20 +42,18 @@ SELECT ?curr ?prev
     String getPrevObjQuery(CiteUrn urn) {
 return """${prefix}
 
-SELECT ?prev ?pval ?p ?l ?t WHERE {
-?prev ?p ?pval .
-?p cite:propLabel ?l .
-?p cite:propType ?t .
+	SELECT ?prev ?pval ?p ?l ?t WHERE {
+			{SELECT ?prev
+					WHERE {
+							<${urn}> olo:previous ?prev .
+						   BIND ( <${urn}> as ?curr ) 
+					}
+			}
+			?prev ?p ?pval .
+			?p cite:propLabel ?l .
+			?p cite:propType ?t .
 
-{SELECT ?prev
-           WHERE {
-           ?curr olo:previous ?prev .
-           FILTER (str(?curr) = "${urn}") .
-           }
          }
-        
-         }
-        
 """
     }
 
@@ -64,60 +62,57 @@ SELECT ?prev ?pval ?p ?l ?t WHERE {
 
 return """${prefix}
 
-SELECT ?nxt ?pval ?p ?l ?t WHERE {
-?nxt ?p ?pval .
-?p cite:propLabel ?l .
-?p cite:propType ?t .
+	SELECT ?nxt ?pval ?p ?l ?t WHERE {
+			{SELECT ?nxt
+					WHERE {
+							<${urn}> olo:previous ?nxt .
+						   BIND ( <${urn}> as ?curr ) 
+					}
+			}
+			?nxt ?p ?pval .
+			?p cite:propLabel ?l .
+			?p cite:propType ?t .
 
-{SELECT ?nxt
-           WHERE {
-           ?curr olo:next ?nxt .
-           FILTER (str(?curr) = "${urn}") .
-           }
-         }
-        
-         }
+
+	}
         
 """
     }
         
 
-    
+   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */ 
     String getLastQuery(CiteUrn collUrn) {
         return """${prefix}
         SELECT ?urn WHERE {
-         ?urn olo:item ?seq .
-         ?urn cite:belongsTo ?coll .
-         { SELECT  (MAX (?s) as ?max)
-           WHERE {
-           ?ref olo:item ?s .
-           ?ref cite:belongsTo ?coll .
-        FILTER (str(?coll) = "${collUrn}") .
-           }
-          }
-        FILTER (?seq = ?max) .
-        FILTER (str(?coll) = "${collUrn}") .
-        }
+			?urn cite:belongsTo <${collUrn}> .
+		    ?urn olo:item ?seq .
+			{ SELECT (MAX (?s) as ?max )
+				WHERE {
+					?urn olo:item ?s .
+					?urn cite:belongsTo <${collUrn}> .
+				}
+		}
+		FILTER (?seq = ?max).
+			}
        """
-        
     }
 
 
 
+   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */ 
+
     String getFirstQuery(CiteUrn collUrn) {
         return """${prefix}
         SELECT ?urn WHERE {
+			?urn cite:belongsTo <${collUrn}> .
          ?urn olo:item ?seq .
-         ?urn cite:belongsTo ?coll .
          { SELECT  (MIN (?s) as ?min)
            WHERE {
-           ?ref olo:item ?s .
-           ?ref cite:belongsTo ?coll .
-        FILTER (str(?coll) = "${collUrn}") .
+           ?urn olo:item ?s .
+           ?urn cite:belongsTo <${collUrn}> .
            }
           }
         FILTER (?seq = ?min) .
-        FILTER (str(?coll) = "${collUrn}") .
         }
        """
         
@@ -128,8 +123,7 @@ SELECT ?nxt ?pval ?p ?l ?t WHERE {
     String getCollSizeQuery(CiteUrn collUrn) {
         return """${prefix}
         SELECT (COUNT(?urn) AS ?size) WHERE {
-          ?urn cite:belongsTo ?coll .
-          FILTER(str(?coll) = "${collUrn}") .
+          ?urn cite:belongsTo <${collUrn}> .
         }
 """
     }
@@ -137,8 +131,7 @@ SELECT ?nxt ?pval ?p ?l ?t WHERE {
     String getValidReffQuery(CiteUrn collUrn) {
         return """${prefix}
         SELECT ?urn WHERE {
-          ?urn cite:belongsTo ?coll .
-          FILTER(str(?coll) = "${collUrn}") .
+          ?urn cite:belongsTo <${collUrn}> .
         }     
         """
     }
@@ -146,10 +139,9 @@ SELECT ?nxt ?pval ?p ?l ?t WHERE {
     String propsForCollection(CiteUrn collUrn) {
         return """${prefix}
         SELECT ?p ?l ?t WHERE {
-        ?s cite:collProperty ?p .
+        <${collUrn}> cite:collProperty ?p .
         ?p cite:propLabel ?l .
         ?p cite:propType ?t .
-        FILTER(str(?s) = "${collUrn}") . 
         }
         """
     }
@@ -157,12 +149,11 @@ SELECT ?nxt ?pval ?p ?l ?t WHERE {
     String getObjectQuery(CiteUrn urn) {
         return """${prefix}
         SELECT ?pval ?p ?l ?t WHERE {
-        ?obj cite:belongsTo ?coll  .
+        <${urn}> cite:belongsTo ?coll  .
         ?coll cite:collProperty ?p .
-        ?obj ?p ?pval .
+        <${urn}> ?p ?pval .
         ?p cite:propLabel ?l .
         ?p cite:propType ?t .
-        FILTER(str(?obj) = "${urn}") . 
         }
        """
      }
@@ -170,9 +161,9 @@ SELECT ?nxt ?pval ?p ?l ?t WHERE {
 String getPagedQuery(CiteUrn urn, int offset, int limit) {
 return """${prefix}
 select ?s  ?o WHERE {
-?s  cite:belongsTo ?o .
+?s  cite:belongsTo <${urn}> .
 ?s olo:item  ?seq .
-FILTER (str(?o) = "${urn}") .
+BIND ( <${urn}> as ?o )
 }
 ORDER BY ?seq
 LIMIT ${limit}
@@ -185,10 +176,9 @@ String getPagedIllQuery(CiteUrn urn, int offset, int limit) {
 return """${prefix}
 
 select ?s ?img WHERE {
-?s  cite:belongsTo ?o .
+?s  cite:belongsTo <${urn}> .
 ?s olo:item  ?seq .
 ?s hmt:hasDefaultImage ?img .
-FILTER (str(?o) = "${urn}") .
 }
 ORDER BY ?seq
 LIMIT ${limit}
