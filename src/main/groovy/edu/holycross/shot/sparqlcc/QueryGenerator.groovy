@@ -19,6 +19,14 @@ prefix hmt:        <http://www.homermultitext.org/hmt/rdf/>
     QueryGenerator() {
     }
 
+
+
+    String getCollUrnsQuery() {
+      SELECT DISTINCT ?coll  where {
+    ?coll rdf:type cite:CiteCollection  .
+    }
+
+
     String getNextUrnQuery(CiteUrn urn) {
        return """${prefix}
 SELECT ?curr ?next
