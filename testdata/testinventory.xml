@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-model href="../schemas/CiteCollectionInventory.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<collectionService xmlns="http://chs.harvard.edu/xmlns/cite"     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <extensionImplementation
+        rdfType="cite:CiteImage"
+        abbr="image"/>
+    <citeCollection canonicalId="Image" label="Caption" urn="urn:cite:hmt:vaimg">
+        <namespaceMapping
+            abbr="hmt"
+            fullValue="http://www.homermultitext.org/datans"/>
+        <extension name="image"/>
+        <title
+            xmlns="http://purl.org/dc/elements/1.1/">Images of the Venetus A MS</title>
+        <creator
+            xmlns="http://purl.org/dc/elements/1.1/">Christopher Blackwell</creator>
+        <creator
+            xmlns="http://purl.org/dc/elements/1.1/">Neel Smith</creator>
+        <coverage
+            xmlns="http://purl.org/dc/elements/1.1/">All images from the Homer Multitext project's photography of the Venetus A manuscript.</coverage>
+        <description
+            xmlns="http://purl.org/dc/elements/1.1/"> Photography of the Venetus A manuscript by the Homer Multitext project.</description>
+        <rights
+            xmlns="http://purl.org/dc/elements/1.1/"> All data in this collection are available
+            under the terms of the Creative Commons Attribution-Non-Commercial 3.0 Unported License,
+            http://creativecommons.org/licenses/by-nc/3.0/deed.en_US</rights>
+        <source
+            type="file"
+            value="images/vaimgs.csv"/>
+        <citeProperty name="Image" label="Image URN" type="citeurn"/>
+        <citeProperty name="Label" label="Caption" type="string"/>
+        <citeProperty name="Rights" label="Rights" type="string">
+        </citeProperty>
+    </citeCollection>
+    
+    
+    <!-- INVENTORIES FOR GREEK LIT: ************************************************* ********************   -->
+    
+    <citeCollection canonicalId="URN" label="GreekLit Text Groups" urn="urn:cite:chs:textgroup">
+        <namespaceMapping abbr="chs" fullValue="http://chs.harvard.edu/cite/chs"></namespaceMapping>
+        <dc:creator>The Center for Hellenic Studies of Harvard University</dc:creator>
+        <dc:description>TextGroup identifiers for ancient Greek texts transmitted by manuscript copying.</dc:description>
+        <dc:rights>Public Domain</dc:rights>
+        <source type="file" value="greekLit/greekLit-groups.csv"/>
+        <citeProperty label="URN" name="URN" type="citeurn"></citeProperty>
+        <citeProperty label="CTS URN" type="ctsurn" name="CTSURN"></citeProperty>
+        <citeProperty label="English Name" name="EnglishName" type="string"></citeProperty>
+        <citeProperty label="Latin Name" name="LatinName" type="string" ></citeProperty>
+    </citeCollection>
+    
+    <citeCollection canonicalId="URN" label="GreekLit Works" urn="urn:cite:chs:work">
+        <namespaceMapping abbr="chs" fullValue="http://chs.harvard.edu/cite/chs"/>
+        <dc:creator>The Center for Hellenic Studies of Harvard University</dc:creator>
+        <dc:description>Work identifiers for ancient Greek texts transmitted by manuscript copying.</dc:description>
+        <dc:rights>Public Domain</dc:rights>
+        <source type="file" value="greekLit/greekLit-works.csv"/>
+        <citeProperty label="URN" name="URN" type="citeurn"></citeProperty>
+        <citeProperty label="CTS URN" type="ctsurn" name="CTSURN"></citeProperty>
+        <citeProperty label="Group URN" type="citeurn" name="GroupURN"> <indexRelation rdfverb="http://www.homermultitext.org/cite/rdf/inherits" inverseverb="http://www.homermultitext.org/cite/rdf/isInheritedBy"/></citeProperty>
+        <citeProperty label="English Name" name="EnglishName" type="string"></citeProperty>
+        <citeProperty label="Latin Name" name="LatinName" type="string" ></citeProperty>
+        <citeProperty name="Textgroup" label="Text group" type="citeurn" join="naturaljoin"></citeProperty>
+    </citeCollection>
+    
+    
+    
+    <!-- INVENTORY OF SCHOLIA: ************************************************* ********************   -->
+    
+    <citeCollection
+        canonicalId="URN"
+        label="Comments"
+        urn="urn:cite:hmt:scholia">
+        <namespaceMapping
+            abbr="hmt"
+            fullValue="http://www.homermultitext.org/datans"/>
+        <title
+            xmlns="http://purl.org/dc/elements/1.1/">Inventory of scholia edited</title>
+        <creator
+            xmlns="http://purl.org/dc/elements/1.1/">Christopher Blackwell</creator>
+        <creator
+            xmlns="http://purl.org/dc/elements/1.1/">Neel Smith</creator>
+        <coverage
+            xmlns="http://purl.org/dc/elements/1.1/">All scholia identified to date.</coverage>
+        <description
+            xmlns="http://purl.org/dc/elements/1.1/"> Inventory with documentary visual evidence and
+            physical location of scholia edited in the Homer Multitext project.</description>
+        <rights
+            xmlns="http://purl.org/dc/elements/1.1/"> All data in this collection are available
+            under the terms of the Creative Commons Attribution-Non-Commercial 3.0 Unported License,
+            http://creativecommons.org/licenses/by-nc/3.0/deed.en_US</rights>
+        <source
+            type="file"
+            value="scholiainventory.csv"/>
+        <citeProperty
+            label="Scholion URN"
+            name="URN"
+            type="citeurn"/>
+        <citeProperty
+            label="Text URN"
+            name="TextUrn"
+            type="ctsurn">
+        </citeProperty>
+        <citeProperty
+            label="Comments"
+            name="Comments"
+            type="string">
+            <indexRelation rdfverb="rdf:label"/>
+        </citeProperty>
+        <citeProperty
+            label="Visual evidence"
+            name="VisualEvidence"
+            type="citeurn">
+            <indexRelation rdfverb="dse:illustratedBy" inverseverb="dse:illustrates"/>
+        </citeProperty>
+        <citeProperty
+            label="Folio URN"
+            name="FolioUrn"
+            type="citeurn">
+            <indexRelation rdfverb="dse:appearsOn" inverseverb="dse:hasOnIt"/>
+        </citeProperty>
+    </citeCollection>
+    
+
+</collectionService>

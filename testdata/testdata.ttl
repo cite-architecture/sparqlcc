@@ -1,0 +1,207 @@
+<http://www.homermultitext.org/datans> rdf:type cite:DataNs .
+<http://www.homermultitext.org/datans> cite:abbreviatedBy "hmt" .
+
+<urn:cite:hmt:vaimg> rdf:type cite:CiteCollection . 
+<urn:cite:hmt:vaimg> rdf:label "Photography of the Venetus A manuscript by the Homer Multitext project." . 
+<urn:cite:hmt:vaimg> cite:canonicalId citedata:vaimg_Image . 
+
+<urn:cite:hmt:vaimg> rdf:type cite:CiteImage .
+<urn:cite:hmt:vaimg>  cite:collProperty  citedata:vaimg_Image .
+citedata:vaimg_Image rdf:type rdf:Property .
+citedata:vaimg_Image cite:propLabel "Image URN".
+citedata:vaimg_Image cite:propType cite:CiteUrn .
+
+<urn:cite:hmt:vaimg>  cite:collProperty  citedata:vaimg_Label .
+citedata:vaimg_Label rdf:type rdf:Property .
+citedata:vaimg_Label cite:propLabel "Caption".
+citedata:vaimg_Label cite:propType "string".
+
+<urn:cite:hmt:vaimg>  cite:collProperty  citedata:vaimg_Rights .
+citedata:vaimg_Rights rdf:type rdf:Property .
+citedata:vaimg_Rights cite:propLabel "Rights".
+citedata:vaimg_Rights cite:propType "string".
+
+<http://chs.harvard.edu/cite/chs> rdf:type cite:DataNs .
+<http://chs.harvard.edu/cite/chs> cite:abbreviatedBy "chs" .
+
+<urn:cite:chs:textgroup> rdf:type cite:CiteCollection . 
+<urn:cite:chs:textgroup> rdf:label "TextGroup identifiers for ancient Greek texts transmitted by manuscript copying." . 
+<urn:cite:chs:textgroup> cite:canonicalId citedata:textgroup_URN . 
+
+<urn:cite:chs:textgroup>  cite:collProperty  citedata:textgroup_URN .
+citedata:textgroup_URN rdf:type rdf:Property .
+citedata:textgroup_URN cite:propLabel "URN".
+citedata:textgroup_URN cite:propType cite:CiteUrn .
+
+<urn:cite:chs:textgroup>  cite:collProperty  citedata:textgroup_CTSURN .
+citedata:textgroup_CTSURN rdf:type rdf:Property .
+citedata:textgroup_CTSURN cite:propLabel "CTS URN".
+citedata:textgroup_CTSURN cite:propType cite:CtsUrn .
+
+<urn:cite:chs:textgroup>  cite:collProperty  citedata:textgroup_EnglishName .
+citedata:textgroup_EnglishName rdf:type rdf:Property .
+citedata:textgroup_EnglishName cite:propLabel "English Name".
+citedata:textgroup_EnglishName cite:propType "string".
+
+<urn:cite:chs:textgroup>  cite:collProperty  citedata:textgroup_LatinName .
+citedata:textgroup_LatinName rdf:type rdf:Property .
+citedata:textgroup_LatinName cite:propLabel "Latin Name".
+citedata:textgroup_LatinName cite:propType "string".
+
+<http://chs.harvard.edu/cite/chs> rdf:type cite:DataNs .
+<http://chs.harvard.edu/cite/chs> cite:abbreviatedBy "chs" .
+
+<urn:cite:chs:work> rdf:type cite:CiteCollection . 
+<urn:cite:chs:work> rdf:label "Work identifiers for ancient Greek texts transmitted by manuscript copying." . 
+<urn:cite:chs:work> cite:canonicalId citedata:work_URN . 
+
+<urn:cite:chs:work>  cite:collProperty  citedata:work_URN .
+citedata:work_URN rdf:type rdf:Property .
+citedata:work_URN cite:propLabel "URN".
+citedata:work_URN cite:propType cite:CiteUrn .
+
+<urn:cite:chs:work>  cite:collProperty  citedata:work_CTSURN .
+citedata:work_CTSURN rdf:type rdf:Property .
+citedata:work_CTSURN cite:propLabel "CTS URN".
+citedata:work_CTSURN cite:propType cite:CtsUrn .
+
+<urn:cite:chs:work>  cite:collProperty  citedata:work_GroupURN .
+citedata:work_GroupURN rdf:type rdf:Property .
+citedata:work_GroupURN cite:propLabel "Group URN".
+citedata:work_GroupURN cite:propType cite:CiteUrn .
+
+<urn:cite:chs:work>  cite:collProperty  citedata:work_EnglishName .
+citedata:work_EnglishName rdf:type rdf:Property .
+citedata:work_EnglishName cite:propLabel "English Name".
+citedata:work_EnglishName cite:propType "string".
+
+<urn:cite:chs:work>  cite:collProperty  citedata:work_LatinName .
+citedata:work_LatinName rdf:type rdf:Property .
+citedata:work_LatinName cite:propLabel "Latin Name".
+citedata:work_LatinName cite:propType "string".
+
+<urn:cite:chs:work>  cite:collProperty  citedata:work_Textgroup .
+citedata:work_Textgroup rdf:type rdf:Property .
+citedata:work_Textgroup cite:propLabel "Text group".
+citedata:work_Textgroup cite:propType cite:CiteUrn .
+
+<http://www.homermultitext.org/datans> rdf:type cite:DataNs .
+<http://www.homermultitext.org/datans> cite:abbreviatedBy "hmt" .
+
+<urn:cite:hmt:scholia> rdf:type cite:CiteCollection . 
+<urn:cite:hmt:scholia> rdf:label "Inventory with documentary visual evidence and            physical location of scholia edited in the Homer Multitext project." . 
+<urn:cite:hmt:scholia> cite:canonicalId citedata:scholia_URN . 
+
+<urn:cite:hmt:scholia>  cite:collProperty  citedata:scholia_URN .
+citedata:scholia_URN rdf:type rdf:Property .
+citedata:scholia_URN cite:propLabel "Scholion URN".
+citedata:scholia_URN cite:propType cite:CiteUrn .
+
+<urn:cite:hmt:scholia>  cite:collProperty  citedata:scholia_TextUrn .
+citedata:scholia_TextUrn rdf:type rdf:Property .
+citedata:scholia_TextUrn cite:propLabel "Text URN".
+citedata:scholia_TextUrn cite:propType cite:CtsUrn .
+
+<urn:cite:hmt:scholia>  cite:collProperty  citedata:scholia_Comments .
+citedata:scholia_Comments rdf:type rdf:Property .
+citedata:scholia_Comments cite:propLabel "Comments".
+citedata:scholia_Comments cite:propType "string".
+
+<urn:cite:hmt:scholia>  cite:collProperty  citedata:scholia_VisualEvidence .
+citedata:scholia_VisualEvidence rdf:type rdf:Property .
+citedata:scholia_VisualEvidence cite:propLabel "Visual evidence".
+citedata:scholia_VisualEvidence cite:propType cite:CiteUrn .
+
+<urn:cite:hmt:scholia>  cite:collProperty  citedata:scholia_FolioUrn .
+citedata:scholia_FolioUrn rdf:type rdf:Property .
+citedata:scholia_FolioUrn cite:propLabel "Folio URN".
+citedata:scholia_FolioUrn cite:propType cite:CiteUrn .
+
+
+
+<urn:cite:chs:textgroup.tlg0011> cite:belongsTo <urn:cite:chs:textgroup> .
+<urn:cite:chs:textgroup> cite:possesses <urn:cite:chs:textgroup.tlg0011> .
+<urn:cite:chs:textgroup.tlg0011> cite:ordered "false" .
+<urn:cite:chs:textgroup.tlg0011> citedata:textgroup_CTSURN <urn:cts:greekLit:tlg0011> .
+<urn:cite:chs:textgroup.tlg0011> citedata:textgroup_LatinName "Sophocles" .
+<urn:cite:chs:textgroup.tlg0011> citedata:textgroup_EnglishName "Sophocles" .
+
+<urn:cite:chs:textgroup.tlg0012> cite:belongsTo <urn:cite:chs:textgroup> .
+<urn:cite:chs:textgroup> cite:possesses <urn:cite:chs:textgroup.tlg0012> .
+<urn:cite:chs:textgroup.tlg0012> cite:ordered "false" .
+<urn:cite:chs:textgroup.tlg0012> citedata:textgroup_CTSURN <urn:cts:greekLit:tlg0012> .
+<urn:cite:chs:textgroup.tlg0012> citedata:textgroup_LatinName "Homerus" .
+<urn:cite:chs:textgroup.tlg0012> citedata:textgroup_EnglishName "Homer" .
+
+
+<urn:cite:chs:work.tlg0011_tlg003> cite:belongsTo <urn:cite:chs:work> .
+<urn:cite:chs:work> cite:possesses <urn:cite:chs:work.tlg0011_tlg003> .
+<urn:cite:chs:work.tlg0011_tlg003> cite:ordered "false" .
+<urn:cite:chs:work.tlg0011_tlg003> citedata:work_CTSURN <urn:cts:greekLit:tlg0011.tlg003> .
+<urn:cite:chs:work.tlg0011_tlg003> citedata:work_LatinName "Ajax" .
+<urn:cite:chs:work.tlg0011_tlg003> citedata:work_EnglishName "Ajax" .
+<urn:cite:chs:work.tlg0011_tlg003> citedata:work_Textgroup <urn:cite:chs:textgroup.tlg0011> .
+
+<urn:cite:chs:work.tlg0011_tlg002> cite:belongsTo <urn:cite:chs:work> .
+<urn:cite:chs:work> cite:possesses <urn:cite:chs:work.tlg0011_tlg002> .
+<urn:cite:chs:work.tlg0011_tlg002> cite:ordered "false" .
+<urn:cite:chs:work.tlg0011_tlg002> citedata:work_CTSURN <urn:cts:greekLit:tlg0011.tlg002> .
+<urn:cite:chs:work.tlg0011_tlg002> citedata:work_LatinName "Antigone" .
+<urn:cite:chs:work.tlg0011_tlg002> citedata:work_EnglishName "Antigone" .
+<urn:cite:chs:work.tlg0011_tlg002> citedata:work_Textgroup <urn:cite:chs:textgroup.tlg0011> .
+
+<urn:cite:chs:work.tlg0011_tlg005> cite:belongsTo <urn:cite:chs:work> .
+<urn:cite:chs:work> cite:possesses <urn:cite:chs:work.tlg0011_tlg005> .
+<urn:cite:chs:work.tlg0011_tlg005> cite:ordered "false" .
+<urn:cite:chs:work.tlg0011_tlg005> citedata:work_CTSURN <urn:cts:greekLit:tlg0011.tlg005> .
+<urn:cite:chs:work.tlg0011_tlg005> citedata:work_LatinName "Electra" .
+<urn:cite:chs:work.tlg0011_tlg005> citedata:work_EnglishName "Electra" .
+<urn:cite:chs:work.tlg0011_tlg005> citedata:work_Textgroup <urn:cite:chs:textgroup.tlg0011> .
+
+<urn:cite:chs:work.tlg0011_tlg007> cite:belongsTo <urn:cite:chs:work> .
+<urn:cite:chs:work> cite:possesses <urn:cite:chs:work.tlg0011_tlg007> .
+<urn:cite:chs:work.tlg0011_tlg007> cite:ordered "false" .
+<urn:cite:chs:work.tlg0011_tlg007> citedata:work_CTSURN <urn:cts:greekLit:tlg0011.tlg007> .
+<urn:cite:chs:work.tlg0011_tlg007> citedata:work_LatinName "Oedipus Coloneus" .
+<urn:cite:chs:work.tlg0011_tlg007> citedata:work_EnglishName "Oedipus at Colonus" .
+<urn:cite:chs:work.tlg0011_tlg007> citedata:work_Textgroup <urn:cite:chs:textgroup.tlg0011> .
+
+<urn:cite:chs:work.tlg0011_tlg004> cite:belongsTo <urn:cite:chs:work> .
+<urn:cite:chs:work> cite:possesses <urn:cite:chs:work.tlg0011_tlg004> .
+<urn:cite:chs:work.tlg0011_tlg004> cite:ordered "false" .
+<urn:cite:chs:work.tlg0011_tlg004> citedata:work_CTSURN <urn:cts:greekLit:tlg0011.tlg004> .
+<urn:cite:chs:work.tlg0011_tlg004> citedata:work_LatinName "Oedipus Tyrannus" .
+<urn:cite:chs:work.tlg0011_tlg004> citedata:work_EnglishName "Oedipus the King" .
+<urn:cite:chs:work.tlg0011_tlg004> citedata:work_Textgroup <urn:cite:chs:textgroup.tlg0011> .
+
+<urn:cite:chs:work.tlg0011_tlg006> cite:belongsTo <urn:cite:chs:work> .
+<urn:cite:chs:work> cite:possesses <urn:cite:chs:work.tlg0011_tlg006> .
+<urn:cite:chs:work.tlg0011_tlg006> cite:ordered "false" .
+<urn:cite:chs:work.tlg0011_tlg006> citedata:work_CTSURN <urn:cts:greekLit:tlg0011.tlg006> .
+<urn:cite:chs:work.tlg0011_tlg006> citedata:work_LatinName "Philoctetes" .
+<urn:cite:chs:work.tlg0011_tlg006> citedata:work_EnglishName "Philoctetes" .
+<urn:cite:chs:work.tlg0011_tlg006> citedata:work_Textgroup <urn:cite:chs:textgroup.tlg0011> .
+
+<urn:cite:chs:work.tlg0011_tlg001> cite:belongsTo <urn:cite:chs:work> .
+<urn:cite:chs:work> cite:possesses <urn:cite:chs:work.tlg0011_tlg001> .
+<urn:cite:chs:work.tlg0011_tlg001> cite:ordered "false" .
+<urn:cite:chs:work.tlg0011_tlg001> citedata:work_CTSURN <urn:cts:greekLit:tlg0011.tlg001> .
+<urn:cite:chs:work.tlg0011_tlg001> citedata:work_LatinName "Trachiniae" .
+<urn:cite:chs:work.tlg0011_tlg001> citedata:work_EnglishName "Women of Trachis" .
+<urn:cite:chs:work.tlg0011_tlg001> citedata:work_Textgroup <urn:cite:chs:textgroup.tlg0011> .
+
+<urn:cite:chs:work.tlg0012_tlg001> cite:belongsTo <urn:cite:chs:work> .
+<urn:cite:chs:work> cite:possesses <urn:cite:chs:work.tlg0012_tlg001> .
+<urn:cite:chs:work.tlg0012_tlg001> cite:ordered "false" .
+<urn:cite:chs:work.tlg0012_tlg001> citedata:work_CTSURN <urn:cts:greekLit:tlg0012.tlg001> .
+<urn:cite:chs:work.tlg0012_tlg001> citedata:work_LatinName "Ilias" .
+<urn:cite:chs:work.tlg0012_tlg001> citedata:work_EnglishName "The Iliad" .
+<urn:cite:chs:work.tlg0012_tlg001> citedata:work_Textgroup <urn:cite:chs:textgroup.tlg0012> .
+
+<urn:cite:chs:work.tlg0012_tlg002> cite:belongsTo <urn:cite:chs:work> .
+<urn:cite:chs:work> cite:possesses <urn:cite:chs:work.tlg0012_tlg002> .
+<urn:cite:chs:work.tlg0012_tlg002> cite:ordered "false" .
+<urn:cite:chs:work.tlg0012_tlg002> citedata:work_CTSURN <urn:cts:greekLit:tlg0012.tlg002> .
+<urn:cite:chs:work.tlg0012_tlg002> citedata:work_LatinName "Odyssea" .
+<urn:cite:chs:work.tlg0012_tlg002> citedata:work_EnglishName "The Odyssey" .
+<urn:cite:chs:work.tlg0012_tlg002> citedata:work_Textgroup <urn:cite:chs:textgroup.tlg0012> .
