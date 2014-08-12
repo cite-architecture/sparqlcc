@@ -146,8 +146,8 @@ buildTestData.doLast {
   CollectionArchive cc = new CollectionArchive(testInventory, schemaFile, dataDir)
 
   File testOut = new File("testdata/testdata.ttl")
-  cc.ttl(testOut)
- 
+  testOut.delete()
+  cc.ttl(testOut, true)
 }
 
 

@@ -26,7 +26,7 @@
             http://creativecommons.org/licenses/by-nc/3.0/deed.en_US</rights>
         <source
             type="file"
-            value="images/vaimgs.csv"/>
+            value="hmt/vaimgs.csv"/>
         <citeProperty name="Image" label="Image URN" type="citeurn"/>
         <citeProperty name="Label" label="Caption" type="string"/>
         <citeProperty name="Rights" label="Rights" type="string">
@@ -90,7 +90,7 @@
             http://creativecommons.org/licenses/by-nc/3.0/deed.en_US</rights>
         <source
             type="file"
-            value="scholiainventory.csv"/>
+            value="hmt/scholiainventory.csv"/>
         <citeProperty
             label="Scholion URN"
             name="URN"
@@ -119,6 +119,104 @@
             <indexRelation rdfverb="dse:appearsOn" inverseverb="dse:hasOnIt"/>
         </citeProperty>
     </citeCollection>
+    
+    
+    
+    
+    <citeCollection
+        canonicalId="codex"
+        label="description"
+        urn="urn:cite:hmt:codices">
+        <namespaceMapping
+            abbr="hmt"
+            fullValue="http://www.homermultitext.org/datans"/>
+        <title
+            xmlns="http://purl.org/dc/elements/1.1/">Codices</title>
+        <creator
+            xmlns="http://purl.org/dc/elements/1.1/">Christopher Blackwell</creator>
+        <creator
+            xmlns="http://purl.org/dc/elements/1.1/">Neel Smith</creator>
+        <coverage
+            xmlns="http://purl.org/dc/elements/1.1/">Codices (manuscript or print) photographed and
+            edited by the Homer Multitext project.</coverage>
+        <description
+            xmlns="http://purl.org/dc/elements/1.1/"> Digital models of codices (manuscript or
+            print) photographed and edited by the Homer Multitext project.</description>
+        <rights
+            xmlns="http://purl.org/dc/elements/1.1/"> All data in this collection are available
+            under the terms of the Creative Commons Attribution-Non-Commercial 3.0 Unported License,
+            http://creativecommons.org/licenses/by-nc/3.0/deed.en_US</rights>
+        <source
+            type="file"
+            value="hmt/codices.csv"/>
+        <citeProperty
+            label="Codex URN"
+            name="codex"
+            type="citeurn"/>
+        <citeProperty
+            label="Label"
+            name="description"
+            type="string"/>
+        <citeProperty
+            label="Page model"
+            name="pageModel"
+            type="citeurn"
+            join="naturaljoin"/>
+        <citeProperty
+            label="Century (approx.)"
+            name="century"
+            type="number"/>
+    </citeCollection>
+    
+    
+    
+    <citeCollection
+        canonicalId="PageUrn"
+        label="Label"
+        urn="urn:cite:hmt:u4">
+        <namespaceMapping
+            abbr="hmt"
+            fullValue="http://www.homermultitext.org/datans"/>
+        <title
+            xmlns="http://purl.org/dc/elements/1.1/">Pages of the manuscript Marciana 841 </title>
+        <creator
+            xmlns="http://purl.org/dc/elements/1.1/">Christopher Blackwell</creator>
+        <creator
+            xmlns="http://purl.org/dc/elements/1.1/">Neel Smith</creator>
+        <coverage
+            xmlns="http://purl.org/dc/elements/1.1/">All folio sides of the manuscript Marciana
+            841</coverage>
+        <description
+            xmlns="http://purl.org/dc/elements/1.1/">Folio sides of the manuscript Marciana
+            841.</description>
+        <rights
+            xmlns="http://purl.org/dc/elements/1.1/"> All data in this collection are available
+            under the terms of the Creative Commons Attribution-Non-Commercial 3.0 Unported License,
+            http://creativecommons.org/licenses/by-nc/3.0/deed.en_US</rights>
+        <orderedBy
+            property="Sequence"/>
+        <source
+            type="file"
+            value="hmt/marciana841.csv"/>
+        <citeProperty
+            label="URN"
+            name="PageUrn"
+            type="citeurn"/>
+        <citeProperty
+            label="Sequence"
+            name="Sequence"
+            type="number"/>
+        <citeProperty
+            label="Recto or verso"
+            name="RV"
+            type="string"/>
+        <citeProperty
+            label="description"
+            name="Label"
+            type="string"/>
+    </citeCollection>
+    
+    
     
 
 </collectionService>
