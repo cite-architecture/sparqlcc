@@ -10,7 +10,7 @@ request.setCharacterEncoding("UTF-8")
 response.setHeader( "Access-Control-Allow-Origin", "*")
 
 // TEMP HACK:
-String sparqlAddr =  "http://localhost:3030/ds/"
+String sparqlAddr =  "@ tripleserver@"
 
 
 def getCapsFile = {

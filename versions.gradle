@@ -9,7 +9,7 @@ ext {
     jingversion = "20091111"
 
     citeVersion = "0.12.22"
-    prestochangoVersion = "0.2.9"
+    prestochangoVersion = "0.3.0"
 
     junitVersion = "4.8.2"
     xmlunitVersion = "1.3"

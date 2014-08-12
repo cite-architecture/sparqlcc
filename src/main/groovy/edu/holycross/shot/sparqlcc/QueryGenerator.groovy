@@ -22,8 +22,11 @@ prefix hmt:        <http://www.homermultitext.org/hmt/rdf/>
 
 
     String getCollUrnsQuery() {
-      SELECT DISTINCT ?coll  where {
-    ?coll rdf:type cite:CiteCollection  .
+      return """
+SELECT DISTINCT ?coll  where {
+  ?coll rdf:type cite:CiteCollection  .
+}
+"""
     }
 
 
@@ -68,21 +71,18 @@ return """${prefix}
 
     String getNextObjQuery(CiteUrn urn) {
 
-return """${prefix}
+return """
+${prefix}
 
-	SELECT ?nxt ?pval ?p ?l ?t WHERE {
-			{SELECT ?nxt
-					WHERE {
-							<${urn}> olo:previous ?nxt .
-						   BIND ( <${urn}> as ?curr ) 
-					}
-			}
-			?nxt ?p ?pval .
-			?p cite:propLabel ?l .
-			?p cite:propType ?t .
-
-
-	}
+SELECT ?nxt ?pval ?p ?l ?t WHERE {
+   {SELECT ?nxt	WHERE {
+	<${urn}> olo:next ?nxt .
+        BIND ( <${urn}> as ?curr )  }
+    }
+    ?nxt ?p ?pval .
+    ?p cite:propLabel ?l .
+    ?p cite:propType ?t .
+}
         
 """
     }

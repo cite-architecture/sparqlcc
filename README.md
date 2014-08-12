@@ -1,8 +1,6 @@
 # `sparqlcc`: an implementation of the CITE Collections service #
 
-Work in progress.
-
-Requires a SPARQL endpoint.  References to its address have not been cleaned up yet in source code:  ultimately will be universally set from the `SPARQL` property in `gradle.properties`.  For now, if you're not running on `localhost:3030` you may get in trouble.  Sorry.
+Requires a SPARQL endpoint.
 
 ## Dependencies ##
 

@@ -3,10 +3,12 @@ package edu.holycross.shot.sparqlcc
 import edu.holycross.shot.prestochango.CollectionArchive
 import edu.harvard.chs.cite.CiteUrn
 
+/*
 import groovyx.net.http.*
 import groovyx.net.http.HttpResponseException
 import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
+*/
 
 import groovy.json.JsonSlurper
 import groovy.xml.XmlUtil
@@ -58,20 +60,6 @@ class Query {
         if (acceptType == "application/json") {
             q +="&output=json"
         }
-		/*
-        HTTPBuilder http = new HTTPBuilder(q)
-		try {
-				http.request( Method.GET, ContentType.TEXT ) { req ->
-					headers.Accept = acceptType
-					response.success = { resp, reader ->
-						replyString = reader.text
-					}
-				}
-		} finally {
-			http.shutdown()
-		}
-        return replyString
-		*/
         URL queryUrl = new URL(q)
         return queryUrl.getText("UTF-8")
 

@@ -1,6 +1,6 @@
 import edu.holycross.shot.sparqlcc.CiteCollectionSvc
 
-String sparql = "http://localhost:3030/ds/"
+String sparql = "@tripleserver@"
 
 CiteCollectionSvc cc = new CiteCollectionSvc(sparql)
 

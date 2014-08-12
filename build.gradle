@@ -7,7 +7,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath group: 'edu.holycross.shot', name : 'prestochango' , version: '0.3.0'
+    classpath group: 'edu.holycross.shot', name : 'prestochango' , version: '0.3.1'
   }
 }
 import edu.holycross.shot.prestochango.CollectionArchive
