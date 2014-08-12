@@ -2,18 +2,20 @@ package edu.holycross.shot.sparqlcc
 
 import edu.harvard.chs.cite.CiteUrn
 
+
+/*
 import groovyx.net.http.*
 import groovyx.net.http.HttpResponseException
 import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
-
+*/
 
 
 /** Implementation of all requests of the CITE Collection service.
 */
 class CiteCollectionSvc {
 
-    int debug = 1
+    int debug = 0
 
     /** SPARQL query endpoint for HMT graph triples.   */
     String tripletServerUrl
@@ -41,8 +43,6 @@ class CiteCollectionSvc {
         boolean objOpened = false
 
         parsedReply.results.bindings.each { b ->
-//            System.err.println b
-
             if (!objOpened) {
                 reply.append("<citeObject urn='" + b.nxt.value + "'>\n" )
                 objOpened = true
@@ -273,17 +273,8 @@ System.err.println "GETOBJ: " + qg.getObjectQuery(urn)
         if (acceptType == "application/json") {
             q +="&output=json"
         }
-
-
-	/*
-        def http = new HTTPBuilder(q)
-        http.request( Method.GET, ContentType.TEXT ) { req ->
-            headers.Accept = acceptType
-            response.success = { resp, reader ->
-                replyString = reader.text
-            }
-	    }*/
-        return replyString
+	URL queryUrl = new URL(q)
+        return queryUrl.getText("UTF-8")
     }
 
 
